@@ -1,48 +1,62 @@
 #include "main.h"
 
-int find_pal(char *s, int i, int len);
-int _strlen_recursion(char *s);
+int find_strlen(char *s);
+int check_palindrome(char *s, int len, int base);
+int is_palindrome(char *s);
 
 /**
- * is_palindrome - checks if a string is a palindrome
- * @s: reverse this string
+ * find_strlen - Function that returns the length of a string.
+ * @s: The string to be measured.
  *
- * Return: if palidrome, return 1,
- *         if not palidrome, return 0
+ * Return: The length of the string.
+ */
+int find_strlen(char *s)
+{
+	int len = 0;
+
+	if (*(s + len))
+	{
+		len++;
+		len += find_strlen(s + len);
+	}
+
+	return (len);
+}
+
+/**
+ * check_palindrome - Function checks if a string is a palindrome.
+ * @s: The string to be checked.
+ * @len: The length of s.
+ * @base: The index of the string to be checked.
+ *
+ * Return: If the string is a palindrome return 1.
+ *         If the string is not a palindrome return 0.
+ */
+int check_palindrome(char *s, int len, int base)
+{
+	if (s[base] == s[len / 2])
+		return (1);
+
+	if (s[base] == s[len - base - 1])
+		return (check_palindrome(s, len, base + 1));
+
+	return (0);
+}
+
+/**
+ * is_palindrome - Checks if a string is a palindrome.
+ * @s: The string to be checked.
+ *
+ * Return: If the string is a palindrome - 1.
+ *         If the string is not a palindrome - 0.
  */
 int is_palindrome(char *s)
 {
-	if (*s == 0)
-		return (1);
-	return (find_pal(s, 0, _strlen_recursion(s)));
-}
+	int base = 0;
+	int len = find_strlen(s);
 
-/**
- * _strlen_recursion - returns the length of a string
- * @s: string to evaluate the length of
- *
- * Return: length of the string
- */
-int _strlen_recursion(char *s)
-{
-	if (*s == '\0')
-		return (0);
-	return (1 + _strlen_recursion(s + 1));
-}
-
-/**
- * find_pal - checks the characters recursively for palindrome
- * @s: string to check
- * @i: iterator
- * @len: length of the string
- *
- * Return: 1 if palindrome, 0 if not
- */
-int find_pal(char *s, int i, int len)
-{
-	if (*(s + i) != *(s + len - 1))
-		return (0);
-	if (i >= len)
+	if (!(*s))
 		return (1);
-	return (check_pal(s, i + 1, len - 1));
+
+	return (check_palindrome(s, len, base));
 }
