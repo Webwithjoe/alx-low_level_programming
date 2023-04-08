@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include "main.h"
 /**
  * mainprog - function prints name followd by a new line.
  * @argc: gives number of arguments.
