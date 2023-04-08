@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include "main.h"
 /**
- * mainprog - function prints name followd by a new line.
+ * main - function prints name followd by a new line.
  * @argc: gives number of arguments.
  * @argv: gives program array
  * Return: 0
  */
 
-int mainprog(int argc, char const *argv[])
+int main(int argc, char const *argv[])
 {
 	(void)argc;
 
