@@ -34,7 +34,7 @@ s[a] = s1[a];
 a++;
 }
 
-while (n < long2 && i < (long1 + n))
+while (n < long2 && a < (long1 + n))
 	s[a++] = s2[b++];
 
 	while (n >= long2 && a < (long1 + long2))
