@@ -4,7 +4,7 @@
  * @array: array 
  * @size: the size of elements in array
  * @cmp: pointer to func of one of the 3 in main
- * Return: 0 (Success)
+ * Return: index of array
  */
 int int_index(int *array, int size, int (*cmp)(int))
 {
@@ -14,8 +14,8 @@ int int_index(int *array, int size, int (*cmp)(int))
 		return (-1);
 	for (a = 0; a < size; a++)
 	{
-		if (cmp(array[a]))
+		if (cmp(array[a]) != 0)
 			return (a);
 	}
-	return (-1)
+	return (-1);
 }
