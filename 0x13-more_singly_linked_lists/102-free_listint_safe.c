@@ -23,7 +23,7 @@ size_t free_listint_safe(listint_t **h)
 		mycount++;
 		next = current->next;
 		free(current);
-		if (next >= current)
+		if (next <= current)
 		{
 			*h = NULL;
 			exit(98);
@@ -34,4 +34,3 @@ size_t free_listint_safe(listint_t **h)
 	*h = NULL;
 	return (mycount);
 }
-
