@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * binary_to_uint - FUNCTON converts a binary num to unsigned int.
@@ -8,29 +9,22 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	/* Use of for statement */
-	unsigned int uint;
-	int mylen, mybinary;
+	int a;
+	unsigned int num;
 
+	num = 0;
 	if (!b)
 		return (0);
-
-	uint = 0;
-
-	for (mylen = 0; b[mylen] != '\0'; mylen++)
-		;
-
-	for (mylen--, mybinary = 1; mylen >= 0; mylen--, mybinary *= 2)
+	for (a = 0; b[a] != '\0'; a++)
 	{
-		if (b[mylen] != '0' && b[mylen] != '1')
-		{
+		if (b[a] != '0' && b[a] != '1')
 			return (0);
-		}
-
-		if (b[mylen] & 1)
-		{
-			uint += mybinary;
-		}
 	}
-	return (uint);
+	for (a = 0; b[a] != '\0'; a++)
+	{
+		num <<= 1;
+		if (b[a] == '1')
+			num += 1;
+	}
+	return (num);
 }
