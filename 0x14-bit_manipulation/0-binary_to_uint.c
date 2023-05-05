@@ -8,22 +8,29 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-	int a;
-	unsigned int num;
+	/* Use of for statement */
+	unsigned int uint;
+	int mylen, mybinary;
 
-	num = 0;
 	if (!b)
 		return (0);
-	for (a = 0; b[a] != '\0'; a++)
+
+	uint = 0;
+
+	for (mylen = 0; b[mylen] != '\0'; mylen++)
+		;
+
+	for (mylen--, mybinary = 1; mylen >= 0; mylen--, mybinary *= 2)
 	{
-		if (b[a] != '0' && b[a] != '1')
+		if (b[mylen] != '0' && b[mylen] != '1')
+		{
 			return (0);
+		}
+
+		if (b[mylen] & 1)
+		{
+			uint += mybinary;
+		}
 	}
-	for (a = 0; b[a] != '\0'; a++)
-	{
-		num <<= 1;
-		if (b[a] == '1')
-			num += 1;
-	}
-	return (num);
+	return (uint);
 }
