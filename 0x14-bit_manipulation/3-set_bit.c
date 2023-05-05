@@ -1,4 +1,4 @@
-#include "main.h" /* The header file */
+#include "main.h"
 
 /**
  * set_bit - FUNC sets bit value at given index.
@@ -8,12 +8,11 @@
  */
 int set_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int bitset = 0;
+	unsigned long int setb;
 
-	if (index > 63)
+	if (index > (sizeof(unsigned long int) * 8 - 1))
 		return (-1);
-
-	setbit = 1 << index;
-	*n = *n | setbit;
+	setb = 1 << index;
+	*n = *n | setb;
 	return (1);
 }
