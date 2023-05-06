@@ -1,4 +1,4 @@
-#include "main.h" /* The preprocessor directive for header file*/
+#include "main.h"
 
 /**
  * _pow - FUN calculates (base ^ power)
