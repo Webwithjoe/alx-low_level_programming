@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * binary_to_uint - FUNCTON converts a binary num to unsigned int.
