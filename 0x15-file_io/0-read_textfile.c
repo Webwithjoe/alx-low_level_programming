@@ -1,4 +1,9 @@
 #include "main.h"
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 
 /**
@@ -10,32 +15,30 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	int a, e;
-	char *buff;
+	char *buff
+	ssize_t lthr, lthw;
 
-	/* if statements*/
-	if (!filename)
+	if (filename == NULL)
 		return (0);
 	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	if (fd == -1)
 		return (0);
 	buff = malloc(sizeof(char) * letters);
-	if (!buff)
-		return (0);
-	a = read(fd, buff, letters);
-	if (a < 0)
+	if (buff == NULL)
 	{
-		free(buff);
+		close(fd);
 		return (0);
 	}
-	buff[a] = '\0';
+	lthr = read(fd, buff, letters);
 	close(fd);
-	e = write(STDOUT_FILENO, buff, a);
-	if (e < 0)
+	if (lthr == -1)
 	{
 		free(buff);
 		return (0);
 	}
+	lthw = write(STDOUT_FILENO, buff, lthr);
 	free(buff);
-	return (e);
+	if (lthr != lthw)
+		return (0);
+	return (lthw);
 }
